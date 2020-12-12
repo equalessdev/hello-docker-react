@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Travis
+
+## build test
+docker build -t hello-docker-react-localimage -f Dockerfile.dev .
+(테스트후프로그램종료안됨) docker run 5f792c430b10 npm run test -- --coverage
+docker run -e CI=true 5f792c430b10 npm run test
+
+## 형상관리
+git add .
+git commit -m "added travis file"
