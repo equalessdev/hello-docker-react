@@ -1,0 +1,37 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+CMD [ "npm","run","start" ]
+
+# 1. docker build .
+# 오류 발생
+#2. docker build -f Dockerfile.dev .
+# 많은 warning 발생
+# npm install 후에 copy . . 하므로 node_modules 호스트경로를 지울것
+
+#3. docker run ec9bbafeb5f6
+#4. docker run -p 3000:3000 3c2ec042b662
+
+#5. 소스수정후 브라우저 리로딩해도 내용 변경안됨
+# docker run ec9bbafeb5f6 npm run test
+# docker build -f Dockerfile.dev .
+#6. docker run -p 3000:3000  -v $(pwd):/app 3c2ec042b662
+# docker run -it  npm run test
+
+# test.js    argv.push('--watchAll');
+
+#7. docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app -e CHOKIDAR_USEPOLLING=true 3c2ec042b662
+
+#8. docker-compose up
+
+# docker run -it 4de33dc302f9 npm run test
+
+# 지금당장은 도커컴포즈 볼륨을 사용하여 필요없으나
+# 운영환경에 소스복사등에 사용할 수 있다.

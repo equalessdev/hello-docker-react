@@ -1,0 +1,47 @@
+version: '3'
+services:
+  web:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ${PWD}:/app
+  tests:
+    stdin_open: true
+#    environment:
+#      - CHOKIDAR_USEPOLLING=true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ['npm', 'run', 'test']
+
+# 도커파일 테스트 이용시
+# docker build -f Dockerfile.dev .
+# docker run bd5c756719f3 npm run test (테스트실행만됨 재실행입력 없음, 화면요청은 안됨:오버라이드)
+# docker run -it bd5c756719f3 npm run test (테스트실행후 재실행됨)
+# 아직 테스트소스변경시 재수행 안됨
+# 
+
+# docker-compose up (자동재수행안됨-오류발생)
+# docker ps
+# docker exec -it  48233e84e896 npm run test ( 안됨 )
+# code 127 /app commaind failed 
+
+# docker-compose up --build  --remove-orphans
+# docker exec -it  48233e84e896 npm run test ( 잘됨 )
+# 그러나 한번만 잘되고 테스트소스 수정시 오류 발생
+# docker-compose up -- build 
+
+# tests 서비스 추가후
+# docker-compose up --build  --remove-orphans
+# 테스트 소스 수정시 자동반영 안됨
+# docker exec -it  5d346e579cd8 npm run test ( 잘됨 )
