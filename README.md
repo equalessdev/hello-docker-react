@@ -80,3 +80,4 @@ docker run -e CI=true 5f792c430b10 npm run test
 ## 형상관리
 git add .
 git commit -m "added travis file"
+git push origin master
