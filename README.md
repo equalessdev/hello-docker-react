@@ -69,7 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 # Travis
 
 ## build test
@@ -82,3 +81,6 @@ gst
 git add .
 git commit -m "added travis file"
 git push origin master
+
+
+git checkout -b feature
