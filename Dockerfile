@@ -18,6 +18,3 @@ EXPOSE 80
 
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# docker build .
-# docker run -p 8080:80 bb02462055e9
-
